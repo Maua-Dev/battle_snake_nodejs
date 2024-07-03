@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Construct} from 'constructs'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
-import {Duration} from 'aws-cdk-lib'
+import {CfnOutput, Duration} from 'aws-cdk-lib'
 import * as path from 'path'
 import { envs } from '../envs'
 
@@ -9,13 +9,14 @@ export class LambdaStack extends Construct {
   lambdaLayer: lambda.LayerVersion
   libLayer: lambda.LayerVersion
 
-  createLambdaSimpleAPI() {
+  createLambdaSimpleAPI(environmentVariables: Record<string, any>) {
     const lambdaFunction = new lambda.Function(this, 'BattleSnake', {
       functionName: `${envs.PROJECT_NAME}`,
       code: lambda.Code.fromAsset(path.join(__dirname, `../../dist/src/`)),
       handler: `app.index.handler`,
       runtime: lambda.Runtime.NODEJS_20_X,
       layers: [this.libLayer],
+      environment: environmentVariables,
       timeout: Duration.seconds(30),
       memorySize: 512
     })
@@ -23,7 +24,7 @@ export class LambdaStack extends Construct {
     return lambdaFunction
   }
 
-  constructor(scope: Construct) {
+  constructor(scope: Construct, environmentVariables: Record<string, any>) {
     super(scope, 'DailyTasksMssLambdaStack')
 
     const projectName = envs.PROJECT_NAME
@@ -33,7 +34,15 @@ export class LambdaStack extends Construct {
       compatibleRuntimes: [lambda.Runtime.NODEJS_20_X],
     })
     
-    this.createLambdaSimpleAPI()
+    const lambdaFunc = this.createLambdaSimpleAPI(environmentVariables)
+    const lambdaUrl = lambdaFunc.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.NONE
+    })
+
+    new CfnOutput(this, projectName + "Url", {
+      value: lambdaUrl.url,
+      exportName: projectName + 'UrlValue'
+    })
       
   }
 }

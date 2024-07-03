@@ -18,9 +18,8 @@ const awsRegion = envs.AWS_REGION
 
 const tags = {
   'project': 'DailyTasksMss',
-  'stage': 'test',
   'stack': 'BACK',
-  'owner': 'DevD'
+  'owner': 'Dev Community Maua'
 }
 
 new IacStack(app, stackName as string, {

@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { execSync } from 'child_process';
 
 const IAC_DIRECTORY_NAME = 'iac';
 const SOURCE_DIRECTORY_NAME = 'src';
+const NEW_NODE_MODULES_DIR_NAME = '_node_modules';
 const NODE_MODULES_DIR_NAME = 'node_modules';
 
 export function adjustLayerDirectory(): void {
@@ -17,8 +17,8 @@ export function adjustLayerDirectory(): void {
   console.log(`IaC directory files: ${fs.readdirSync(iacDirectory)}`);
 
   // Define os diretórios de origem e destino para shared
-  const sourceDirectory = path.join(rootDirectory, SOURCE_DIRECTORY_NAME, NODE_MODULES_DIR_NAME);
-  const destinationDirectory = path.join(iacDirectory, NODE_MODULES_DIR_NAME, SOURCE_DIRECTORY_NAME, NODE_MODULES_DIR_NAME);
+  const sourceDirectory = path.join(rootDirectory, NODE_MODULES_DIR_NAME);
+  const destinationDirectory = path.join(rootDirectory, 'dist', NODE_MODULES_DIR_NAME);
 
   // Apaga o diretório de destino se ele existir
   if (fs.existsSync(destinationDirectory)) {
@@ -50,23 +50,6 @@ function copyFolderSync(src: string, dest: string): void {
     } else {
       fs.copyFileSync(path.join(src, file), path.join(dest, file));
     }
-  }
-}
-
-async function installRequirements(rootDir: string, sitePackagesDir: string): Promise<void> {
-  const requirementsFile = path.join(rootDir, 'requirements.txt');
-  if (!fs.existsSync(requirementsFile)) {
-    throw new Error(`requirements.txt not found in ${rootDir}`);
-  }
-
-  try {
-    const command = `pip install -r ${requirementsFile} --target ${sitePackagesDir}`;
-    console.log(`Running command: ${command}`);
-    execSync(command, { stdio: 'inherit' });
-    console.log(`Successfully installed requirements from ${requirementsFile} to ${sitePackagesDir}`);
-  } catch (error) {
-    console.error(`Failed to install requirements: ${error}`);
-    throw error;
   }
 }
 

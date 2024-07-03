@@ -1,4 +1,6 @@
 import express, { Request, Response } from 'express';
+import ServerlessHttp from 'serverless-http';
+import { STAGE } from './app/stage_enum';
 
 const app = express();
 app.use(express.json());
@@ -33,5 +35,12 @@ app.post('/end', (req: Request, res: Response) => {
     res.send("ok");
 });
 
+console.log('')
+
+if (process.env.STAGE === STAGE.TEST) {
+    app.listen(3000, () => {console.log('Server up and running on: http://localhost:3000 🚀')})
+} else {
+    ServerlessHttp(app)
+}
 
 
