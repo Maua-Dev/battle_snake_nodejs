@@ -34,13 +34,13 @@ jobs:
     
         - name: Installing Dependencies to Deploy
           run: |
-            yarn add global aws-cdk
             cd iac
+            npm install -g aws-cdk
             npm i
         - name: Installing Dependencies to BattleSnake
           run: |
-            yarn
-            yarn build
+            npm i
+            npm run build
         - name: Setup envs
           run: |
             echo AWS_REGION=us-west-2 >> $GITHUB_ENV
