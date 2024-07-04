@@ -10,8 +10,21 @@ export class LambdaStack extends Construct {
   libLayer: lambda.LayerVersion
 
   createLambdaSimpleAPI(environmentVariables: Record<string, any>) {
-    const lambdaFunction = new lambda.Function(this, 'BattleSnake', {
-      functionName: `${envs.PROJECT_NAME}`,
+    const githubRef = process.env.GITHUB_REF || ''
+
+    let stage;
+    if (githubRef.includes('prod')) {
+        stage = 'PROD';
+    } else if (githubRef.includes('homolog')) {
+        stage = 'HOMOLOG';
+    } else if (githubRef.includes('dev')) {
+        stage = 'DEV';
+    } else {
+        stage = 'TEST';
+    }
+
+    const lambdaFunction = new lambda.Function(this, `${envs.STACK_NAME}-${stage}`, {
+      functionName: `${envs.PROJECT_NAME}-${stage}`,
       code: lambda.Code.fromAsset(path.join(__dirname, `../../dist/`)),
       handler: `index.handler`,
       runtime: lambda.Runtime.NODEJS_20_X,
@@ -24,7 +37,7 @@ export class LambdaStack extends Construct {
   }
 
   constructor(scope: Construct, environmentVariables: Record<string, any>) {
-    super(scope, `${envs.STACK_NAME}-BattleSnake`)
+    super(scope, `${envs.STACK_NAME}`)
 
     const projectName = envs.PROJECT_NAME
     
@@ -33,7 +46,7 @@ export class LambdaStack extends Construct {
       authType: lambda.FunctionUrlAuthType.NONE
     })
 
-    new CfnOutput(this, projectName + "Url", {
+    new CfnOutput(this, `${envs.STACK_NAME}UrlValue`, {
       value: lambdaUrl.url,
       exportName: projectName + 'UrlValue'
     })
