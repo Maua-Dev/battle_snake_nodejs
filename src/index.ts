@@ -42,7 +42,7 @@ console.log('process.env.STAGE: ' + process.env.STAGE)
 if (process.env.STAGE === STAGE.TEST) {
     app.listen(3000, () => {console.log('Server up and running on: http://localhost:3000 🚀')})
 } else {
-    ServerlessHttp(app)
+    module.exports.handler = ServerlessHttp(app)
 }
 
 
