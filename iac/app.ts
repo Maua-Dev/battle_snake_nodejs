@@ -22,7 +22,20 @@ const tags = {
   'owner': 'Dev Community Maua'
 }
 
-new IacStack(app, stackName as string, {
+const githubRef = process.env.GITHUB_REF || ''
+
+let stage;
+if (githubRef.includes('prod')) {
+    stage = 'PROD';
+} else if (githubRef.includes('homolog')) {
+    stage = 'HOMOLOG';
+} else if (githubRef.includes('dev')) {
+    stage = 'DEV';
+} else {
+    stage = 'TEST';
+}
+
+new IacStack(app, `${stackName}-BattleSnakeIaCStack-${stage}`, {
   env: {
     region: awsRegion,
     account: awsAccount

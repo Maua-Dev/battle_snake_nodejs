@@ -12,10 +12,9 @@ export class LambdaStack extends Construct {
   createLambdaSimpleAPI(environmentVariables: Record<string, any>) {
     const lambdaFunction = new lambda.Function(this, 'BattleSnake', {
       functionName: `${envs.PROJECT_NAME}`,
-      code: lambda.Code.fromAsset(path.join(__dirname, `../../dist/src/`)),
-      handler: `app.index.handler`,
+      code: lambda.Code.fromAsset(path.join(__dirname, `../../dist/`)),
+      handler: `index.handler`,
       runtime: lambda.Runtime.NODEJS_20_X,
-      layers: [this.libLayer],
       environment: environmentVariables,
       timeout: Duration.seconds(30),
       memorySize: 512
@@ -25,14 +24,9 @@ export class LambdaStack extends Construct {
   }
 
   constructor(scope: Construct, environmentVariables: Record<string, any>) {
-    super(scope, 'DailyTasksMssLambdaStack')
+    super(scope, `${envs.STACK_NAME}-BattleSnake`)
 
     const projectName = envs.PROJECT_NAME
-
-    this.libLayer = new lambda.LayerVersion(this, `${projectName}-express-layer-2024`, {
-      code: lambda.Code.fromAsset(path.join(__dirname, '../node_modules')),
-      compatibleRuntimes: [lambda.Runtime.NODEJS_20_X],
-    })
     
     const lambdaFunc = this.createLambdaSimpleAPI(environmentVariables)
     const lambdaUrl = lambdaFunc.addFunctionUrl({
