@@ -17,7 +17,7 @@ const stackName = envs.STACK_NAME
 const awsRegion = envs.AWS_REGION
 
 const tags = {
-  'project': 'DailyTasksMss',
+  'project': 'BattlesnakeNodejs',
   'stack': 'BACK',
   'owner': 'Dev Community Maua'
 }
@@ -35,7 +35,7 @@ if (githubRef.includes('prod')) {
     stage = 'TEST';
 }
 
-new IacStack(app, `${stackName}-BattleSnakeIaCStack-${stage}`, {
+new IacStack(app, `${stackName}-IaC-${stage}`, {
   env: {
     region: awsRegion,
     account: awsAccount
