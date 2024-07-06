@@ -8,7 +8,7 @@ The main purpose of this project is to create a template for Battlesnake using T
 ![Example](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/58080c12-6d91-4366-b4e0-f7cd9f20f98d)
 
 ## How to use 🤔
-First of all, you need to create a repo using issues from [Devmaua setup](https://github.com/Maua-Dev/devmaua_setup/), set the **project_name** as "**battlesnake_nodejs{your name}**" and project template as **battlesnake_nodejs_template** and make sure it's **public** . Hit create issue and wait for the setup to finish.
+First of all, you need to create a repo using issues from [Devmaua setup](https://github.com/Maua-Dev/devmaua_setup/), set the **project_name** as "**battlesnake_nodejs_{your name}**" and project template as **battlesnake_nodejs_template** and make sure it's **public** . Hit create issue and wait for the setup to finish.
 
 After that you need to clone your new repo, you need to install the dependecies with **NPM** or **YARN**. Just choose **ONE** of them, to avoid future problems!
 
