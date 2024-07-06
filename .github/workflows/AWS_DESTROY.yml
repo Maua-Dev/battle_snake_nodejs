@@ -1,11 +1,8 @@
-name: AWS CD
-on:
+name: AWS Destroy
+on: 
   workflow_dispatch:
-  push:
-    branches:
-      - dev
 jobs:
-  DeployToAWS:
+  DestroyAWS:
     environment: 
       name: ${{ github.ref_name }}
     runs-on: ubuntu-latest
@@ -32,15 +29,11 @@ jobs:
             echo "STACK_NAME=${PROJECT_NAME}StackBattlesnakeNodeJs${{github.ref_name}}" >> $GITHUB_ENV
             echo "PROJECT_NAME=${PROJECT_NAME}BattlesnakeNodeJs" >> $GITHUB_ENV
     
-        - name: Installing Dependencies to Deploy
+        - name: Installing Dependencies to Destroy
           run: |
             cd iac
             npm install -g aws-cdk
             npm i
-        - name: Installing Dependencies to BattleSnake
-          run: |
-            npm i
-            npm run build
         - name: Setup envs
           run: |
             echo AWS_REGION=us-west-2 >> $GITHUB_ENV
@@ -52,9 +45,9 @@ jobs:
             echo ${{ env.STACK_NAME }}
             echo ${{ env.GITHUB_REF_NAME }}
 
-        - name: Deploy with CDK
+        - name: Destroy CDK
           run: |
             cd iac
-            cdk synth
-            cdk deploy --require-approval never 
+            cdk destroy --force
        
+    
