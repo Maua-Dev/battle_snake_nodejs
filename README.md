@@ -8,7 +8,7 @@ The main purpose of this project is to create a template for Battlesnake using T
 ![Example](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/58080c12-6d91-4366-b4e0-f7cd9f20f98d)
 
 ## How to use 🤔
-First of all, you need to create a repo using issues from [Devmaua setup](https://github.com/Maua-Dev/devmaua_setup/), set the **project_name** as "**battlesnake_{your name}**" and project template as **battlesnake_nodejs_template** and make sure it's **public** . Hit create issue and wait for the setup to finish.
+First of all, you need to create a repo using issues from [Devmaua setup](https://github.com/Maua-Dev/devmaua_setup/), set the **project_name** as "**battlesnake_nodejs{your name}**" and project template as **battlesnake_nodejs_template** and make sure it's **public** . Hit create issue and wait for the setup to finish.
 
 After that you need to clone your new repo, you need to install the dependecies with npm install.
 
@@ -19,9 +19,7 @@ After that you need to clone your new repo, you need to install the dependecies 
 
 
 #### Install the dependencies
-    npm install dotenv
     npm install
-
 
 
 #### Run the server locally (needs .env -> STAGE = TEST)
@@ -53,7 +51,7 @@ The first time you push your code, the action will create a new stack in AWS Clo
 
 In the [Actions](https://github.com/Maua-Dev/battlesnake_nodejs_template/actions) tab, you can see the status of the deploy and if it was successful or not. If it was successful, you can find the URL of your API in the outputs tab of the action (in the final part of the "Deploy with CDK" step).
 
-![Action Tab](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/ca447b23-e4f3-423c-8ba2-3f7c891849c9)
+![Action Tab](https://i.imgur.com/VSOPMLw.png)
 ![CD](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/1340c269-f182-46eb-ae12-1d0bdd6059a2)
 ![STEP](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/6129f465-a54d-46fc-b45a-c8b219a6823b)
 
@@ -69,7 +67,7 @@ To log in to the AWS Console, click on the link named "console" in the output, a
 
 After finishing your project, you can delete it from our backend using our CD.
 
-![AwsDestroy](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/68a73993-c55e-4ba8-8bf9-2becbc9decf6)
+![AwsDestroy](https://i.imgur.com/jDTFeZJ.png)
 
 ## Useful tools 🛠
 
