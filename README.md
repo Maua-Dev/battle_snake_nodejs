@@ -10,7 +10,7 @@ The main purpose of this project is to create a template for Battlesnake using T
 ## How to use 🤔
 First of all, you need to create a repo using issues from [Devmaua setup](https://github.com/Maua-Dev/devmaua_setup/), set the **project_name** as "**battlesnake_nodejs{your name}**" and project template as **battlesnake_nodejs_template** and make sure it's **public** . Hit create issue and wait for the setup to finish.
 
-After that you need to clone your new repo, you need to install the dependecies with npm install.
+After that you need to clone your new repo, you need to install the dependecies with **NPM** or **YARN**. Just choose **ONE** of them, to avoid future problems!
 
 ## Installation 👩‍💻
 
@@ -20,11 +20,15 @@ After that you need to clone your new repo, you need to install the dependecies 
 
 #### Install the dependencies
     npm install
+    or
+    yarn
 
 
 #### Run the server locally (needs .env -> STAGE = TEST)
 
     npm run start
+    or
+    yarn start
 
 ## The Challenge 🐍
 The challenge is to create a Battlesnake using NodeJs and ExpressJS. The Battlesnake must be deployed in AWS Lambda.
@@ -71,7 +75,7 @@ After finishing your project, you can delete it from our backend using our CD.
 ## Useful tools 🛠
 
 - [Postman](https://www.postman.com/) - API development environment
-- [ExpressJs](https://expressjs.com/en/5x/api.html) - Web framework
+- [ExpressJs](https://expressjs.com/en/5x/api.html) - API micro-framework Node.js
 - [NodeJs](https://nodejs.org/en/download/package-manager) - Node Documentation
 - [Battlesnake](https://docs.battlesnake.com/) - Battlesnake Documentation
 
