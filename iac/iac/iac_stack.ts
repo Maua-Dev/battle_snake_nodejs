@@ -51,16 +51,17 @@ export class IacStack extends Stack {
         new iam.PolicyStatement({
           actions: ['lambda:*'],
           resources: [lambdaStack.lambdaFunction.functionArn]
-        })
+        }),
+        new iam.PolicyStatement({
+          actions: ['logs:*'],
+          resources: ['arn:aws:logs:*:*:*']
+        }),
+        new iam.PolicyStatement({
+          actions: ['cloudwatch:*'],
+          resources: ['*']
+        }),
       ]
     })
-
-    policy.addStatements(
-      new iam.PolicyStatement({
-        actions: ['logs:*'],
-        resources: ['arn:aws:logs:*:*:*']
-      })
-    )
 
     policy.attachToUser(user)
 
