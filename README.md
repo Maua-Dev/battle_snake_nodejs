@@ -52,7 +52,6 @@ The first time you push your code, the action will create a new stack in AWS Clo
 In the [Actions](https://github.com/Maua-Dev/battlesnake_nodejs_template/actions) tab, you can see the status of the deploy and if it was successful or not. If it was successful, you can find the URL of your API in the outputs tab of the action (in the final part of the "Deploy with CDK" step).
 
 ![Action Tab](https://i.imgur.com/VSOPMLw.png)
-![CD](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/1340c269-f182-46eb-ae12-1d0bdd6059a2)
 ![STEP](https://github.com/Maua-Dev/battlesnake_fastapi_template/assets/81604963/6129f465-a54d-46fc-b45a-c8b219a6823b)
 
 There you can find your API URL. You can use this URL to create your Battlesnake in the Battlesnake website. You can find the documentation [here](https://docs.battlesnake.com/guides/getting-started#step-2-create-a-battlesnake).
