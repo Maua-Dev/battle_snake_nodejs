@@ -34,10 +34,10 @@ You can find the documentation for Battlesnake [here](https://docs.battlesnake.c
 
 ### The files 📁
 The project have one folder: **src**.
-In src, you can find the main.py file, which is the file that contains the ExpressJS app and the routes. From there, you can create your own routes and functions.
+In src, you can find the index.ts file, which is the file that contains the ExpressJS app and the routes. From there, you can create your own routes and functions.
 
 ### The routes 🛣
-The routes are created in the **index.ts** file. You can create your own routes and functions. The routes are created using Express with Typ, you can find the documentation [here]((https://expressjs.com/en/5x/api.html)). Follow the rules from the Battlesnake documentation to create your routes, they should look like [this](https://docs.battlesnake.com/api).
+The routes are created in the **index.ts** file. You can create your own routes and functions. The routes are created using Express with Typescript, you can find the documentation [here]((https://expressjs.com/en/5x/api.html)). Follow the rules from the Battlesnake documentation to create your routes, they should look like [this](https://docs.battlesnake.com/api).
 
 ### Attention 🚨
 In order to deploy your Battlesnake in AWS Lambda, you need to follow some rules:
