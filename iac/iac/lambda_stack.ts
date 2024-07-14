@@ -37,6 +37,7 @@ export class LambdaStack extends Construct {
       handler: `index.handler`,
       runtime: lambda.Runtime.NODEJS_20_X,
       environment: environmentVariables,
+      layers: [this.nodeModulesLayer],
       timeout: Duration.seconds(30),
       memorySize: 512
     });
