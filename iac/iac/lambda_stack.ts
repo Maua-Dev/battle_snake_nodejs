@@ -6,6 +6,7 @@ import { envs } from '../envs';
 
 export class LambdaStack extends Construct {
   public readonly lambdaFunction: lambda.Function;
+  nodeModulesLayer: lambda.LayerVersion;
 
   constructor(scope: Construct, environmentVariables: Record<string, any>) {
     super(scope, `${envs.STACK_NAME}`);
@@ -24,9 +25,15 @@ export class LambdaStack extends Construct {
         stage = 'TEST';
     }
 
+    this.nodeModulesLayer = new lambda.LayerVersion(this, `${envs.STACK_NAME}-node-modules-${stage}`, {
+      code: lambda.Code.fromAsset(path.join(__dirname, `../dependencies`)),
+      compatibleRuntimes: [lambda.Runtime.NODEJS_20_X],
+      description: 'Node modules layer for Battlesnake Nodejs'
+    });
+
     this.lambdaFunction = new lambda.Function(this, `${envs.STACK_NAME}-${stage}`, {
       functionName: `${envs.PROJECT_NAME}-${stage}`,
-      code: lambda.Code.fromAsset(path.join(__dirname, `../../dist/`)),
+      code: lambda.Code.fromAsset(path.join(__dirname, `../../dist`)),
       handler: `index.handler`,
       runtime: lambda.Runtime.NODEJS_20_X,
       environment: environmentVariables,
