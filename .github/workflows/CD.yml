@@ -35,7 +35,7 @@ jobs:
         - name: Installing Dependencies to Deploy
           run: |
             cd iac
-            npm install -g aws-cdk
+            npm i -g aws-cdk ts-node
             npm i
         - name: Installing Dependencies to BattleSnake
           run: |
@@ -55,6 +55,7 @@ jobs:
         - name: Deploy with CDK
           run: |
             cd iac
+            ts-node node_modules_adjust.ts
             cdk synth
             cdk deploy --require-approval never 
        
