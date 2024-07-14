@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as cdk from 'aws-cdk-lib'
 import { IacStack } from './iac/iac_stack'
-import { adjustLayerDirectory } from './adjust_layer_directory'
 import { envs } from './envs'
 
 console.log('Starting the CDK')
-
-console.log('Adjusting the layer directory')
-adjustLayerDirectory()
-console.log('Finished adjusting the layer directory')
 
 const app = new cdk.App()
 
