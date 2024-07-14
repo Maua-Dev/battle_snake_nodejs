@@ -2,11 +2,11 @@
   "name": "my-express-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "nodemon src/index.ts"
+    "start": "nodemon src/app/index.ts"
   },
   "keywords": [],
   "author": "",
