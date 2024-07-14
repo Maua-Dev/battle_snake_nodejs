@@ -2,21 +2,12 @@ import { config } from 'dotenv';
 config()
 import express, { Request, Response } from 'express';
 import ServerlessHttp from 'serverless-http';
-import { STAGE } from './app/stage_enum';
+import { STAGE } from './enums/stage_enum';
+import { router } from './routes/snake_routes'
 
 const app = express();
 app.use(express.json());
-
-app.get('/', (req: Request, res: Response) => {
-    res.json({
-        apiversion: "1",
-        author: "Maua-Dev",
-        color: "#8B0000",
-        head: "tiger-king",
-        tail: "hook",
-        version: "1.0.0"
-    });
-});
+app.use(router)
 
 app.post('/start', (req: Request, res: Response) => {
     res.send("ok");
